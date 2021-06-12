@@ -11,15 +11,7 @@ namespace ArdalisRating
             var engine = new RatingEngine();
             engine.Rate();
 
-            if (engine.Rating > 0)
-            {
-                Console.WriteLine($"Rating: {engine.Rating}");
-            }
-            else
-            {
-                Console.WriteLine("No rating produced.");
-            }
-
+            Console.WriteLine(engine.Rating > 0 ? $"Rating: {engine.Rating}" : "No rating produced.");
         }
     }
 }
