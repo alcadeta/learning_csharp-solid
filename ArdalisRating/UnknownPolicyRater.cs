@@ -9,7 +9,7 @@ namespace ArdalisRating
 
         public override void Rate(Policy policy)
         {
-            _logger.Log("Unknown policy type");
+            Logger.Log("Unknown policy type");
         }
     }
 }
