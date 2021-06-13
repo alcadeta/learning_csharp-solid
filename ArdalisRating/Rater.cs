@@ -2,12 +2,10 @@ namespace ArdalisRating
 {
     public abstract class Rater
     {
-        protected readonly IRatingUpdater _ratingUpdater;
-        protected ILogger Logger { get; set; } = new ConsoleLogger();
+        protected ILogger Logger { get; set; }
 
-        public Rater(IRatingUpdater ratingUpdater) =>
-            _ratingUpdater = ratingUpdater;
+        public Rater(ILogger logger) => Logger = logger;
 
-        public abstract void Rate(Policy policy);
+        public abstract decimal Rate(Policy policy);
     }
 }

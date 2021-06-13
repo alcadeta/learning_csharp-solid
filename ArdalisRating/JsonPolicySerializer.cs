@@ -3,9 +3,13 @@ using Newtonsoft.Json.Converters;
 
 namespace ArdalisRating
 {
-    public class JsonPolicySerializer
+    public interface IPolicySerializer
     {
-        public Policy GetPolicyFromJsonString(string policyJson) =>
+        Policy GetPolicyFromString(string policy);
+    }
+    public class JsonPolicySerializer : IPolicySerializer
+    {
+        public Policy GetPolicyFromString(string policyJson) =>
             JsonConvert.DeserializeObject<Policy>(policyJson,
                 new StringEnumConverter());
     }
