@@ -4,8 +4,10 @@ namespace ArdalisRating
 {
     public class LifePolicyRater : Rater
     {
-        public LifePolicyRater(RatingEngine engine, ConsoleLogger logger)
-            : base(engine, logger) { }
+        public LifePolicyRater(IRatingContext context)
+            : base(context)
+        {
+        }
 
         public override void Rate(Policy policy)
         {
@@ -26,20 +28,20 @@ namespace ArdalisRating
                 _logger.Log("Life policy must include an Amount.");
                 return;
             }
-            var age = DateTime.Today.Year - policy.DateOfBirth.Year;
+            int age = DateTime.Today.Year - policy.DateOfBirth.Year;
             if (policy.DateOfBirth.Month == DateTime.Today.Month &&
                 DateTime.Today.Day < policy.DateOfBirth.Day ||
                 DateTime.Today.Month < policy.DateOfBirth.Month)
             {
                 age--;
             }
-            var baseRate = policy.Amount * age / 200;
+            decimal baseRate = policy.Amount * age / 200;
             if (policy.IsSmoker)
             {
-                _engine.Rating = baseRate * 2;
+                _context.UpdateRating(baseRate * 2);
                 return;
             }
-            _engine.Rating = baseRate;
+            _context.UpdateRating(baseRate);
         }
     }
 }

@@ -4,6 +4,6 @@ namespace ArdalisRating
 {
     public class FilePolicySource
     {
-        public string GetPolicySource() => File.ReadAllText("policy.json");
+        public string GetPolicyFromSource() => File.ReadAllText("policy.json");
     }
 }
